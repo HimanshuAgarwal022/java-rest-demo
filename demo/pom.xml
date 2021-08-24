@@ -11,12 +11,22 @@
 	<groupId>com.example</groupId>
 	<artifactId>demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>demo</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
+		<deploy.wildfly.host>127.0.0.1</deploy.wildfly.host>
+		<deploy.wildfly.port>9990</deploy.wildfly.port>
+		<deploy.wildfly.username>himanshu</deploy.wildfly.username>
+		<deploy.wildfly.password>Wild5ly!!!</deploy.wildfly.password>
 	</properties>
 	<dependencies>
+		<dependency>         
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -24,6 +34,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>ch.qos.logback</groupId>
+					<artifactId>logback-classic</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
@@ -42,6 +58,26 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.wildfly.plugins</groupId>
+				<artifactId>wildfly-maven-plugin</artifactId>
+				<version>2.0.2.Final</version>
+				<executions>
+					<execution>
+						<phase>install</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>                
+					<filename>${project.build.finalName}.war</filename>
+					<hostname>${deploy.wildfly.host}</hostname>
+					<port>${deploy.wildfly.port}</port>
+					<username>${deploy.wildfly.username}</username>
+					<password>${deploy.wildfly.password}</password>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
