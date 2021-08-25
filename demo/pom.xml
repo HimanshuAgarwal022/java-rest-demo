@@ -18,8 +18,8 @@
 		<java.version>11</java.version>
 		<deploy.wildfly.host>127.0.0.1</deploy.wildfly.host>
 		<deploy.wildfly.port>9990</deploy.wildfly.port>
-		<deploy.wildfly.username>himanshu</deploy.wildfly.username>
-		<deploy.wildfly.password>Wild5ly!!!</deploy.wildfly.password>
+		<deploy.wildfly.username></deploy.wildfly.username>
+		<deploy.wildfly.password></deploy.wildfly.password>
 	</properties>
 	<dependencies>
 		<dependency>         
