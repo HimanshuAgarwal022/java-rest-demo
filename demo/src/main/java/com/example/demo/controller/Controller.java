@@ -34,7 +34,8 @@ public class Controller {
 
 		User check = userRepository.findByName(name);
 		if(check != null){
-			throw new UserAlreadyExistsException(name);
+			//throw new UserAlreadyExistsException(name);
+			return " Hello "+check.getName()+"!!! ";
 		}
 		else{
 			User n = new User();
@@ -42,7 +43,7 @@ public class Controller {
 			userRepository.save(n);
 
 			User ans = userRepository.findByName(name);
-			return ans.toString()+" Hello "+ans.getName()+"!!! ";
+			return " Hello "+ans.getName()+"!!! ";
 		}
 
 	}
